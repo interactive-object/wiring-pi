@@ -91,7 +91,8 @@ IMPLEMENT(piBoardRev) {
 
 IMPLEMENT(softPwmCreate) {
     HandleScope scope;
-
+  int res;
+  
   if (args.Length() != 3) {
     ThrowException(Exception::TypeError(
       String::New("Wrong number of arguments.")));
@@ -124,7 +125,7 @@ IMPLEMENT(softPwmWrite) {
     return scope.Close(Undefined());
   }
 
-  res = ::softPwmWrite(args[0]->NumberValue(), args[1]->NumberValue());
+  ::softPwmWrite(args[0]->NumberValue(), args[1]->NumberValue());
 
   return scope.Close(Undefined());
 }
