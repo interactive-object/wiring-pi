@@ -265,5 +265,7 @@ void init(Handle<Object> target) {
   EXPORT(pwmSetRange);
   EXPORT(pwmSetClock);
   EXPORT(pwmWrite);
+  EXPORT(softPwmCreate);
+  EXPORT(softPwmWrite);
 }
 NODE_MODULE(wiringPi, init)
