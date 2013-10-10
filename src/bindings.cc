@@ -24,6 +24,8 @@ namespace wpi {
   DECLARE(pwmSetRange);
   DECLARE(pwmSetClock);
   DECLARE(pwmWrite);
+  DECLARE(softPwmCreate);
+  DECLARE(softPwmWrite);
 }
 
 IMPLEMENT(wiringPiSetup) {
@@ -85,6 +87,49 @@ IMPLEMENT(piBoardRev) {
 
   return scope.Close(Int32::New(res));
 }
+
+IMPLEMENT(softPwmCreate) {
+    HandleScope scope;
+
+  if (args.Length() != 3) {
+    ThrowException(Exception::TypeError(
+      String::New("Wrong number of arguments.")));
+    return scope.Close(Undefined());
+  }
+
+  if (!args[0]->IsNumber() || !args[1]->IsNumber() || !args[2]->IsNumber()) {
+    ThrowException(Exception::TypeError(
+      String::New("Incorrect argument types. Numbers expected.")));
+    return scope.Close(Undefined());
+  }
+
+  res = ::softPwmCreate(args[0]->NumberValue(), args[1]->NumberValue(), args[1]->NumberValue());
+
+  return scope.Close(Int32::New(res));
+}
+
+IMPLEMENT(softPwmWrite) {
+    HandleScope scope;
+
+  if (args.Length() != 2) {
+    ThrowException(Exception::TypeError(
+      String::New("Wrong number of arguments.")));
+    return scope.Close(Undefined());
+  }
+
+  if (!args[0]->IsNumber() || !args[1]->IsNumber()) {
+    ThrowException(Exception::TypeError(
+      String::New("Incorrect argument types. Numbers expected.")));
+    return scope.Close(Undefined());
+  }
+
+  res = ::softPwmWrite(args[0]->NumberValue(), args[1]->NumberValue());
+
+  return scope.Close(Undefined());
+}
+
+
+
 
 IMPLEMENT(pinMode) {
   HandleScope scope;
