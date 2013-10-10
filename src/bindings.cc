@@ -2,6 +2,7 @@
 #include <v8.h>
 
 #include <wiringPi.h>
+#include <softPwm.h>
 
 using namespace v8;
 
