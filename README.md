@@ -69,3 +69,5 @@ These have the same arguments as their WiringPi counterparts
 - `pwmSetRange`
 - `pwmSetClock`
 - `pwmWrite`
+- `softPwmCreate`
+- `softPwmWrite`
